@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     },
     title: {       
-        textAlign: 'center',
-        color: 'white',
-        padding: 12,
-        fontSize: 24,
-        fontWeight: 'bold'
+      textAlign: 'center',
+      color: 'white',
+      padding: 12,
+      fontSize: 24,
+      fontFamily: 'open-sans-bold'
     }
 })

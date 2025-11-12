@@ -67,16 +67,18 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 12,
     fontSize: 24,
-    fontWeight: 'bold'
+    fontFamily: 'open-sans-bold'
 },
 titleContainer: {
   borderColor: 'white',
   borderWidth: 4,
-  marginTop: 28
+  marginTop: 48,
+  marginHorizontal: 20
   },
   text: {
     color: Colors.accent500,
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'open-sans'
   }
     
 })

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
     text: {       
         fontSize: 32,
-        fontWeight: 'bold',
+        fontFamily: 'open-sans-bold',
         color: Colors.accent500,
     },
     buttonContainer: {
@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
     text2: {
         color: Colors.accent500,
         fontSize: 20,
-        marginBottom: 8
+        marginBottom: 8,
+        fontFamily: 'open-sans'
       }
 
 })
