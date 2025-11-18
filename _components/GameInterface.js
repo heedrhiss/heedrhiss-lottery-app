@@ -1,9 +1,10 @@
+import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
 import { Colors } from "../utils/colors";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Button from "./Button";
 import Card from "./Card";
+import RoundListComponent from "./RoundListComponent";
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -17,12 +18,15 @@ function generateRandomBetween(min, max, exclude) {
 
 export default function GameInterface({confirmNumber, onGameOver}) {
   let min = 1;
-  let max = 100;
-  const initialNumber = generateRandomBetween(1, 100, confirmNumber)
+  let max = 20;
+  const initialNumber = generateRandomBetween(1, 20, confirmNumber)
   const [curNum, setCurNum] = useState(initialNumber)
+  const [roundsEntry, setRoundsEntry] = useState([initialNumber]);
 
   useEffect(()=>{
-    if(confirmNumber === curNum) onGameOver()
+    if(confirmNumber === curNum) onGameOver(roundsEntry.length)
+    min = 1;
+    max = 20;
   }, [confirmNumber, curNum, onGameOver])
 
   const handleChange = (direction)=> {
@@ -35,8 +39,11 @@ export default function GameInterface({confirmNumber, onGameOver}) {
     }else{
     min = curNum + 1
     }
-    setCurNum(generateRandomBetween(min, max, curNum))
+    const newGenNumb = generateRandomBetween(min, max, curNum)
+    setCurNum(newGenNumb)
+    setRoundsEntry(cur => [newGenNumb, ...cur]) 
   }
+  const roundNumber = roundsEntry.length
 
   return (
     <View style={styles.container}>
@@ -54,6 +61,11 @@ export default function GameInterface({confirmNumber, onGameOver}) {
         </Button>
       </View>
       </Card>
+      <View style={styles.listContainer}>
+      <FlatList data={roundsEntry} renderItem={(itemData)=>
+        <RoundListComponent roundNumber={roundNumber - itemData.index} guessNumber={itemData.item}/> }
+         />
+      </View>     
     </View>
   )
 }
@@ -88,6 +100,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 8,
         fontFamily: 'open-sans'
-      }
-
+    },
+    listContainer: {
+      height: 380,
+      padding: 6,
+      alignItems: 'flex-start'
+    }
 })

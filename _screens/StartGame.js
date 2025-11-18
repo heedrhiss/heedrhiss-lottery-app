@@ -10,8 +10,8 @@ export default function StartGame({setNumber}) {
   function handleSubmit(){    
     const chosenNumber = parseInt(inputNumber)
     
-    if(isNaN(chosenNumber) || chosenNumber < 1 || chosenNumber > 100){
-      Alert.alert('Invalid Number', 'Input must be a valid number between 1 - 100', [{text: 'Dismiss', style: 'destructive', onPress: resetInput}])
+    if(isNaN(chosenNumber) || chosenNumber < 1 || chosenNumber > 20){
+      Alert.alert('Invalid Number', 'Input must be a valid number between 1 - 20', [{text: 'Dismiss', style: 'destructive', onPress: resetInput}])
       resetInput()
       return
     }else{

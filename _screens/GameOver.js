@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { Colors } from '../utils/colors'
 import Button from '../_components/Button'
 
-export default function GameOver() {
+export default function GameOver({rounds, confirmNumber, onResetGame}) {
   return (
     <View style={styles.screen}>
         <View style={styles.titleContainer}>
@@ -13,8 +13,8 @@ export default function GameOver() {
         <View style={styles.imageCont}>
         <Image style={styles.image} source={require('../assets/images/success.png')}/>
         </View>  
-        <Text style={styles.text}>Your phone guessed <Text style={styles.highlight}>X</Text> number of times to predict <Text style={styles.highlight}>Y</Text>.</Text>  
-        <Button>Start New Game</Button>
+        <Text style={styles.text}>Your phone guessed <Text style={styles.highlight}>{rounds}</Text> number of times to guess <Text style={styles.highlight}>{confirmNumber}</Text> right.</Text>  
+        <Button onPress={onResetGame}>Start New Game</Button>
     </View>
   )
 }

@@ -17,10 +17,16 @@ export default function App() {
 
   const [confirmNumber, setConfirmNumber] = useState(null);
   const [gameOver, setGameOver] = useState(true);
+  const [rounds, setRounds] = useState(0);
 
-  function handleGameOver(){
+  function handleGameOver(numOfRounds){
     setGameOver(true)
+    setRounds(numOfRounds)
   }
+  const handleReset = ()=> {
+    setConfirmNumber(null)
+  }
+
   if (!fontLoading) <AppLoading/>;
   
   let screen = <StartGame setNumber={(value)=> {
@@ -30,7 +36,7 @@ export default function App() {
 
   if(confirmNumber) screen = <GameScreen confirmNumber={confirmNumber} onGameOver={handleGameOver}/>
 
-  if(gameOver && confirmNumber) screen = <GameOver/>
+  if(gameOver && confirmNumber) screen = <GameOver rounds={rounds} confirmNumber={confirmNumber} onResetGame={handleReset}/>
 
   return (
     <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.container}>
