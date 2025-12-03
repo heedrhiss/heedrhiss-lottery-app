@@ -7,6 +7,7 @@ import StartGame from './_screens/StartGame';
 import GameScreen from './_screens/GameScreen';
 import GameOver from './_screens/GameOver';
 import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function App() {
@@ -39,6 +40,8 @@ export default function App() {
   if(gameOver && confirmNumber) screen = <GameOver rounds={rounds} confirmNumber={confirmNumber} onResetGame={handleReset}/>
 
   return (
+    <>
+    <StatusBar style='light' />
     <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.container}>
       <ImageBackground source={require('./assets/images/bg.jpg')}
       style={styles.container} resizeMode='cover' imageStyle={styles.bg}>
@@ -47,6 +50,7 @@ export default function App() {
       </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
+    </>
   );
 }
 
